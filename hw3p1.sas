@@ -1,6 +1,4 @@
 # stat654
-
-
 data hw2;
 	input y x;
 	retain x;
@@ -35,6 +33,7 @@ data anno;
    x=100; y=100; 
    output;
 
+/*
 proc print data=hw2;
 run;
 
@@ -43,18 +42,20 @@ proc reg data=hw2;
 	model y = x;
 	plot y*p. / anno=anno ;
 	
+*/
 
 proc reg data=hw2 plots=qqplot alpha=.1;
 	var xsq;
-	model y = x / clb clm;
+	model y = x / clb ;
 	add xsq;
 	plot y*p. / anno=anno;
 
-ods graphics off;
+
 proc reg data=hw2;
+	ods graphics off;
 	var xsq;
-	model y = x / clb clm;
+	model y = x / clm;
 	add xsq;
-ods graphics on;
+
 		
 run;
