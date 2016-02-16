@@ -44,11 +44,17 @@ proc reg data=hw2;
 	plot y*p. / anno=anno ;
 	
 
-proc reg data=hw2 plots=qqplot alpha=.05;
+proc reg data=hw2 plots=qqplot alpha=.1;
 	var xsq;
-	model y = x;
+	model y = x / clb clm;
 	add xsq;
 	plot y*p. / anno=anno;
-	
+
+ods graphics off;
+proc reg data=hw2;
+	var xsq;
+	model y = x / clb clm;
+	add xsq;
+ods graphics on;
 		
 run;
